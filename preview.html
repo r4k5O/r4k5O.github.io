@@ -1,0 +1,1001 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="GitHub portfolio for r4k5O" />
+  <title>r4k5O · GitHub Portfolio</title>
+  <style>
+    :root {
+      --bg: #050806;
+      --card: rgba(9, 22, 13, 0.82);
+      --card-2: rgba(10, 30, 17, 0.72);
+      --text: #d9ffe4;
+      --muted: #86b994;
+      --primary: #61ff8f;
+      --primary-dark: #0a1d10;
+      --border: rgba(97, 255, 143, 0.34);
+      --border-soft: rgba(97, 255, 143, 0.16);
+      --shadow: 0 0 60px rgba(97, 255, 143, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-width: 320px;
+      background: var(--bg);
+      color: var(--text);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      text-shadow: 0 0 1px rgba(217, 255, 228, 0.4);
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 50% 0%, rgba(97, 255, 143, 0.16), transparent 38rem),
+        linear-gradient(to right, rgba(97, 255, 143, 0.08) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(97, 255, 143, 0.08) 1px, transparent 1px);
+      background-size: auto, 48px 48px, 48px 48px;
+      opacity: 0.45;
+      z-index: -1;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .wrap {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px 0;
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      color: var(--primary);
+      font-size: 14px;
+      font-weight: 900;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+    }
+
+    .brand-icon, .icon-box {
+      display: grid;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      border: 1px solid var(--border);
+      background: rgba(97, 255, 143, 0.1);
+      box-shadow: 0 0 24px rgba(97, 255, 143, 0.16);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      color: var(--muted);
+      font-size: 12px;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 42px;
+      border: 1px solid var(--primary);
+      background: var(--primary);
+      color: #031006;
+      padding: 0 18px;
+      font: inherit;
+      font-weight: 800;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 30px rgba(97, 255, 143, 0.24);
+    }
+
+    .btn.secondary {
+      background: transparent;
+      color: var(--text);
+      border-color: var(--border);
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid var(--border);
+      background: rgba(97, 255, 143, 0.08);
+      color: var(--primary);
+      padding: 7px 11px;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      align-items: center;
+      min-height: calc(100vh - 92px);
+      gap: 56px;
+      padding: 52px 0 84px;
+    }
+
+    h1, h2, h3 {
+      margin: 0;
+      text-transform: uppercase;
+      text-shadow: 0 0 10px rgba(97, 255, 143, 0.34);
+    }
+
+    h1 {
+      margin-top: 24px;
+      max-width: 850px;
+      font-size: clamp(48px, 8vw, 104px);
+      line-height: 0.88;
+      letter-spacing: -0.08em;
+    }
+
+    h2 {
+      font-size: clamp(32px, 5vw, 56px);
+      line-height: 1;
+      letter-spacing: -0.055em;
+    }
+
+    h3 {
+      font-size: 22px;
+      letter-spacing: -0.02em;
+    }
+
+    p {
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    .hero-text {
+      max-width: 700px;
+      font-size: 18px;
+    }
+
+    .green {
+      color: var(--primary);
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 32px;
+    }
+
+    .mini-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 42px;
+      max-width: 680px;
+    }
+
+    .mini {
+      border: 1px solid var(--border-soft);
+      background: var(--card-2);
+      padding: 18px;
+      text-align: center;
+    }
+
+    .mini small {
+      display: block;
+      color: var(--muted);
+      font-size: 10px;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+    }
+
+    .mini strong {
+      display: block;
+      margin-top: 10px;
+      color: var(--primary);
+    }
+
+    .terminal-card, .card, .tabs {
+      border: 1px solid var(--border);
+      background: var(--card);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(12px);
+    }
+
+    .terminal-card {
+      padding: 24px;
+    }
+
+    .card-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: flex-start;
+      margin-bottom: 20px;
+    }
+
+    .terminal-window {
+      border: 1px solid var(--border-soft);
+      background: rgba(0, 0, 0, 0.38);
+      padding: 18px;
+      line-height: 1.8;
+      color: var(--muted);
+    }
+
+    .terminal-window p {
+      margin: 0;
+    }
+
+    .skill {
+      margin-top: 22px;
+    }
+
+    .skill-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      color: var(--text);
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 9px;
+    }
+
+    .bar {
+      height: 5px;
+      background: rgba(97, 255, 143, 0.12);
+      overflow: hidden;
+    }
+
+    .bar span {
+      display: block;
+      height: 100%;
+      background: var(--primary);
+      box-shadow: 0 0 18px rgba(97, 255, 143, 0.55);
+    }
+
+    section {
+      padding: 86px 0;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 28px;
+      margin-bottom: 36px;
+    }
+
+    .section-head p {
+      max-width: 560px;
+      margin: 0;
+      font-size: 14px;
+    }
+
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      padding: 24px;
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(97, 255, 143, 0.7);
+      box-shadow: 0 0 50px rgba(97, 255, 143, 0.13);
+    }
+
+    .project-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 20px;
+    }
+
+    .tag {
+      border: 1px solid var(--border-soft);
+      background: rgba(97, 255, 143, 0.08);
+      color: var(--text);
+      padding: 5px 9px;
+      font-size: 12px;
+    }
+
+    .tabs {
+      padding: 24px;
+    }
+
+    .tab-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+
+    .tab-btn {
+      border: 1px solid var(--border-soft);
+      background: rgba(97, 255, 143, 0.08);
+      color: var(--muted);
+      padding: 9px 13px;
+      font: inherit;
+      cursor: pointer;
+    }
+
+    .tab-btn.active {
+      background: var(--primary);
+      color: #031006;
+      border-color: var(--primary);
+      font-weight: 900;
+    }
+
+    .tab-panel {
+      display: none;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .tab-panel.active {
+      display: grid;
+    }
+
+    .small-card {
+      border: 1px solid var(--border-soft);
+      background: rgba(0, 0, 0, 0.22);
+      padding: 22px;
+    }
+
+    .step {
+      color: var(--primary);
+      font-size: 12px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .contact {
+      border: 1px solid var(--border);
+      background: rgba(97, 255, 143, 0.08);
+      padding: 44px;
+      display: flex;
+      justify-content: space-between;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .contact p {
+      max-width: 680px;
+    }
+
+    footer {
+      border-top: 1px solid var(--border-soft);
+      padding: 30px 20px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 12px;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+    }
+
+
+
+    #matrix {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      opacity: 0.22;
+      z-index: -2;
+    }
+
+    .cursor-glow {
+      position: fixed;
+      width: 320px;
+      height: 320px;
+      border-radius: 999px;
+      background: radial-gradient(circle, rgba(97, 255, 143, 0.16), transparent 62%);
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+      left: 50%;
+      top: 50%;
+      z-index: 0;
+      mix-blend-mode: screen;
+      transition: opacity 0.2s ease;
+    }
+
+    .nav-tools {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .lang-switch {
+      display: flex;
+      gap: 8px;
+    }
+
+    .lang-btn, .cmd-btn {
+      border: 1px solid var(--border-soft);
+      background: rgba(97, 255, 143, 0.06);
+      color: var(--muted);
+      padding: 8px 10px;
+      font: inherit;
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 0.12em;
+      cursor: pointer;
+      text-transform: uppercase;
+      transition: 0.2s ease;
+    }
+
+    .lang-btn.active, .cmd-btn:hover {
+      border-color: var(--primary);
+      background: var(--primary);
+      color: #031006;
+      box-shadow: 0 0 22px rgba(97, 255, 143, 0.18);
+    }
+
+    .typing-caret::after {
+      content: "_";
+      color: var(--primary);
+      animation: blink 0.8s steps(2, start) infinite;
+    }
+
+    @keyframes blink {
+      50% { opacity: 0; }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .card, .terminal-card, .small-card, .mini {
+      transform-style: preserve-3d;
+    }
+
+    .spark {
+      position: fixed;
+      width: 6px;
+      height: 6px;
+      border-radius: 99px;
+      background: var(--primary);
+      pointer-events: none;
+      z-index: 20;
+      box-shadow: 0 0 16px var(--primary);
+      animation: sparkOut 650ms ease-out forwards;
+    }
+
+    @keyframes sparkOut {
+      to { transform: translate(var(--sx), var(--sy)) scale(0); opacity: 0; }
+    }
+
+    .cmdk {
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: flex-start;
+      justify-content: center;
+      padding-top: 12vh;
+      background: rgba(0, 0, 0, 0.58);
+      backdrop-filter: blur(10px);
+      z-index: 50;
+    }
+
+    .cmdk.open {
+      display: flex;
+    }
+
+    .cmdk-box {
+      width: min(560px, calc(100% - 28px));
+      border: 1px solid var(--border);
+      background: rgba(5, 8, 6, 0.96);
+      box-shadow: 0 0 70px rgba(97, 255, 143, 0.2);
+    }
+
+    .cmdk-head {
+      border-bottom: 1px solid var(--border-soft);
+      padding: 16px;
+      color: var(--primary);
+      font-weight: 900;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .cmdk-actions {
+      display: grid;
+      gap: 8px;
+      padding: 12px;
+    }
+
+    .cmdk-actions button {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border: 1px solid var(--border-soft);
+      background: rgba(97, 255, 143, 0.06);
+      color: var(--text);
+      padding: 13px 14px;
+      font: inherit;
+      text-align: left;
+      cursor: pointer;
+    }
+
+    .cmdk-actions button:hover {
+      border-color: var(--primary);
+      background: rgba(97, 255, 143, 0.14);
+    }
+
+    .cmdk-actions kbd {
+      color: var(--primary);
+      font-size: 11px;
+    }
+
+    @media (max-width: 860px) {
+      .hero, .projects, .tab-panel.active {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .section-head, .contact {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .wrap {
+        width: min(100% - 28px, 1180px);
+      }
+
+      .mini-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .nav .btn {
+        display: none;
+      }
+
+      .contact {
+        padding: 28px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <canvas id="matrix" aria-hidden="true"></canvas>
+  <div class="cursor-glow" aria-hidden="true"></div>
+  <header class="wrap nav">
+    <a class="brand" href="#top" aria-label="r4k5O portfolio home">
+      <span class="brand-icon">⌁</span>
+      <span>r4k5O</span>
+    </a>
+    <nav class="nav-links" aria-label="Main navigation">
+      <a href="#projects">Projects</a>
+      <a href="#stack">Stack</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="nav-tools">
+      <div class="lang-switch" aria-label="Language switcher">
+        <button class="lang-btn active" type="button" data-lang="en">EN</button>
+        <button class="lang-btn" type="button" data-lang="de">DE</button>
+      </div>
+      <button class="cmd-btn" type="button" id="openCmd">⌘K</button>
+      <a class="btn secondary" href="https://github.com/r4k5O" target="_blank" rel="noreferrer">GitHub ↗</a>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="wrap hero">
+      <div>
+        <span class="badge">✦ GitHub Portfolio</span>
+        <h1>Building playful code experiments.</h1>
+        <p class="hero-text">
+          I am <span class="green">r4k5O</span> — a developer who likes Minecraft tools, creative web prototypes,
+          block-based coding, AI ideas and projects that feel fun before they feel complicated.
+        </p>
+        <div class="actions">
+          <a class="btn" href="https://github.com/r4k5O" target="_blank" rel="noreferrer">View GitHub →</a>
+          <a class="btn secondary" href="#projects">Explore projects</a>
+        </div>
+        <div class="mini-grid">
+          <div class="mini"><small>Focus</small><strong>Web + Games</strong></div>
+          <div class="mini"><small>Style</small><strong>Terminal UI</strong></div>
+          <div class="mini"><small>Handle</small><strong>@r4k5O</strong></div>
+        </div>
+      </div>
+
+      <aside class="terminal-card" aria-label="Profile terminal card">
+        <div class="card-head">
+          <div>
+            <h3 class="green">system.scan()</h3>
+            <p>portfolio profile loaded</p>
+          </div>
+          <span class="badge">Online</span>
+        </div>
+        <div class="terminal-window">
+          <p><span class="green">$</span> whoami</p>
+          <p class="green">r4k5O</p>
+          <p><span class="green">$</span> mission</p>
+          <p id="typeMission" class="typing-caret" data-text="ship small ideas, learn fast, build cool stuff"></p>
+        </div>
+
+        <div class="skill">
+          <div class="skill-row"><span>Frontend polish</span><span class="green">92%</span></div>
+          <div class="bar"><span style="width:92%"></span></div>
+        </div>
+        <div class="skill">
+          <div class="skill-row"><span>Game mechanics</span><span class="green">88%</span></div>
+          <div class="bar"><span style="width:88%"></span></div>
+        </div>
+        <div class="skill">
+          <div class="skill-row"><span>AI product ideas</span><span class="green">84%</span></div>
+          <div class="bar"><span style="width:84%"></span></div>
+        </div>
+        <div class="skill">
+          <div class="skill-row"><span>Minecraft tooling</span><span class="green">90%</span></div>
+          <div class="bar"><span style="width:90%"></span></div>
+        </div>
+      </aside>
+    </section>
+
+    <section id="projects" class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="badge">Projects</span>
+          <h2 style="margin-top:18px">Selected build directions</h2>
+        </div>
+        <p>Replace these cards with exact repositories whenever you want. The layout is ready for GitHub Pages or any static host.</p>
+      </div>
+
+      <div class="projects">
+        <article class="card">
+          <div class="project-top"><span class="icon-box">▧</span><span class="badge">Scratch / PenguinMod</span></div>
+          <h3>LEGO Robotics Extension</h3>
+          <p>A custom robotics extension concept for controlling LEGO hubs, motors and sensors from a block-based coding environment.</p>
+          <div class="tags"><span class="tag">Blocks</span><span class="tag">Robotics</span><span class="tag">Bluetooth ideas</span></div>
+        </article>
+
+        <article class="card">
+          <div class="project-top"><span class="icon-box">⚒</span><span class="badge">Game Dev</span></div>
+          <h3>Minecraft Experiments</h3>
+          <p>Server plugins, Bedrock add-ons, custom challenges and Minecraft-inspired tools with strong focus on playful systems.</p>
+          <div class="tags"><span class="tag">Plugins</span><span class="tag">Mods</span><span class="tag">World tools</span></div>
+        </article>
+
+        <article class="card">
+          <div class="project-top"><span class="icon-box">⌬</span><span class="badge">AI / Web</span></div>
+          <h3>Browser AI Labs</h3>
+          <p>Small experiments around AI interfaces, local-first browser apps and helpful tools that run with minimal setup.</p>
+          <div class="tags"><span class="tag">React</span><span class="tag">Vite</span><span class="tag">AI UX</span></div>
+        </article>
+
+        <article class="card">
+          <div class="project-top"><span class="icon-box">▦</span><span class="badge">Frontend</span></div>
+          <h3>Creative Web Prototypes</h3>
+          <p>Fast prototypes for app stores, voting sites, learning tools and playful web products with polished UI details.</p>
+          <div class="tags"><span class="tag">UI systems</span><span class="tag">Mobile-first</span><span class="tag">No fluff</span></div>
+        </article>
+      </div>
+    </section>
+
+    <section id="stack" class="wrap">
+      <div class="tabs">
+        <div class="tab-buttons" role="tablist" aria-label="Portfolio info tabs">
+          <button class="tab-btn active" data-tab="stack-panel" type="button">Stack</button>
+          <button class="tab-btn" data-tab="process-panel" type="button">Process</button>
+          <button class="tab-btn" data-tab="values-panel" type="button">Values</button>
+        </div>
+
+        <div id="stack-panel" class="tab-panel active">
+          <div class="small-card"><div class="step">Tool 01</div><h3>React + Vite</h3><p>Fast frontend experiments with reusable components.</p></div>
+          <div class="small-card"><div class="step">Tool 02</div><h3>Game Systems</h3><p>Mechanics, servers, mods, add-ons and playful logic.</p></div>
+          <div class="small-card"><div class="step">Tool 03</div><h3>Simple Deployment</h3><p>Static-first projects that are easy to share.</p></div>
+        </div>
+
+        <div id="process-panel" class="tab-panel">
+          <div class="small-card"><div class="step">Step 01</div><h3>Idea</h3><p>Turn rough concepts into something people can click, play or understand quickly.</p></div>
+          <div class="small-card"><div class="step">Step 02</div><h3>Prototype</h3><p>Build fast versions with React, Vite, HTML/CSS/JS or block-based tools.</p></div>
+          <div class="small-card"><div class="step">Step 03</div><h3>Improve</h3><p>Fix bugs, make the UI clearer and keep the project simple enough to actually use.</p></div>
+        </div>
+
+        <div id="values-panel" class="tab-panel">
+          <div class="small-card"><div class="step">Value 01</div><h3>Fun first</h3><p>A good project should be interesting before it is perfect.</p></div>
+          <div class="small-card"><div class="step">Value 02</div><h3>Clear UI</h3><p>Interfaces should explain themselves without huge manuals.</p></div>
+          <div class="small-card"><div class="step">Value 03</div><h3>Open learning</h3><p>Every project is also a way to learn something new.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="wrap">
+      <div class="contact">
+        <div>
+          <span class="badge">Connect</span>
+          <h2 style="margin-top:18px">Find me as r4k5O on GitHub.</h2>
+          <p>This portfolio uses the public GitHub handle r4k5O.</p>
+        </div>
+        <a class="btn" href="https://github.com/r4k5O" target="_blank" rel="noreferrer">Open profile ↗</a>
+      </div>
+    </section>
+  </main>
+
+  <div class="cmdk" id="cmdk" aria-hidden="true">
+    <div class="cmdk-box" role="dialog" aria-label="Command palette">
+      <div class="cmdk-head">Command Palette</div>
+      <div class="cmdk-actions">
+        <button type="button" data-jump="#projects"><span>Jump to projects</span><kbd>1</kbd></button>
+        <button type="button" data-jump="#stack"><span>Jump to stack</span><kbd>2</kbd></button>
+        <button type="button" data-jump="#contact"><span>Jump to contact</span><kbd>3</kbd></button>
+        <button type="button" data-open-github><span>Open GitHub profile</span><kbd>G</kbd></button>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    © 2026
+  </footer>
+
+  <script>
+    const githubUrl = 'https://github.com/r4k5O';
+
+    const i18n = {
+      en: {
+        nav: ['Projects', 'Stack', 'Contact'],
+        github: 'GitHub ↗',
+        heroBadge: '✦ GitHub Portfolio',
+        heroTitle: 'Building playful code experiments.',
+        heroText: 'I am <span class="green">r4k5O</span> — a developer who likes Minecraft tools, creative web prototypes, block-based coding, AI ideas and projects that feel fun before they feel complicated.',
+        viewGithub: 'View GitHub →',
+        explore: 'Explore projects',
+        terminalLoaded: 'portfolio profile loaded',
+        mission: 'ship small ideas, learn fast, build cool stuff',
+        projectsBadge: 'Projects',
+        projectsTitle: 'Selected build directions',
+        projectsText: 'Replace these cards with exact repositories whenever you want. The layout is ready for GitHub Pages or any static host.',
+        contactBadge: 'Connect',
+        contactTitle: 'Find me as r4k5O on GitHub.',
+        contactText: 'This portfolio uses the public GitHub handle r4k5O.',
+        contactButton: 'Open profile ↗',
+        tabs: ['Stack', 'Process', 'Values'],
+        cmdTitle: 'Command Palette',
+        cmd: ['Jump to projects', 'Jump to stack', 'Jump to contact', 'Open GitHub profile']
+      },
+      de: {
+        nav: ['Projekte', 'Stack', 'Kontakt'],
+        github: 'GitHub ↗',
+        heroBadge: '✦ GitHub-Portfolio',
+        heroTitle: 'Ich baue spielerische Code-Experimente.',
+        heroText: 'Ich bin <span class="green">r4k5O</span> — ein Entwickler für Minecraft-Tools, kreative Web-Prototypen, blockbasiertes Coding, KI-Ideen und Projekte, die erst Spaß machen und dann kompliziert werden dürfen.',
+        viewGithub: 'GitHub ansehen →',
+        explore: 'Projekte ansehen',
+        terminalLoaded: 'Portfolio-Profil geladen',
+        mission: 'kleine Ideen shippen, schnell lernen, coole Dinge bauen',
+        projectsBadge: 'Projekte',
+        projectsTitle: 'Ausgewählte Projektrichtungen',
+        projectsText: 'Diese Karten kannst du später durch echte Repositories ersetzen. Das Layout ist bereit für GitHub Pages oder jeden statischen Hoster.',
+        contactBadge: 'Kontakt',
+        contactTitle: 'Du findest mich als r4k5O auf GitHub.',
+        contactText: 'Dieses Portfolio nutzt den öffentlichen GitHub-Handle r4k5O.',
+        contactButton: 'Profil öffnen ↗',
+        tabs: ['Stack', 'Prozess', 'Werte'],
+        cmdTitle: 'Command Palette',
+        cmd: ['Zu Projekte springen', 'Zum Stack springen', 'Zu Kontakt springen', 'GitHub-Profil öffnen']
+      }
+    };
+
+    const $ = (selector, root = document) => root.querySelector(selector);
+    const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
+
+    function typeText(element, text, speed = 28) {
+      if (!element) return;
+      element.textContent = '';
+      let i = 0;
+      const tick = () => {
+        element.textContent = text.slice(0, i);
+        i += 1;
+        if (i <= text.length) window.setTimeout(tick, speed);
+      };
+      tick();
+    }
+
+    function setLanguage(lang) {
+      const t = i18n[lang] || i18n.en;
+      document.documentElement.lang = lang;
+      localStorage.setItem('portfolio-language', lang);
+      $$('.lang-btn').forEach((button) => button.classList.toggle('active', button.dataset.lang === lang));
+
+      $$('.nav-links a').forEach((link, i) => link.textContent = t.nav[i]);
+      $('.nav-tools .btn').textContent = t.github;
+      $('.hero .badge').textContent = t.heroBadge;
+      $('.hero h1').textContent = t.heroTitle;
+      $('.hero-text').innerHTML = t.heroText;
+      $$('.actions a')[0].textContent = t.viewGithub;
+      $$('.actions a')[1].textContent = t.explore;
+      $('.terminal-card .card-head p').textContent = t.terminalLoaded;
+      $('#typeMission').dataset.text = t.mission;
+      typeText($('#typeMission'), t.mission);
+      $('#projects .badge').textContent = t.projectsBadge;
+      $('#projects h2').textContent = t.projectsTitle;
+      $('#projects .section-head p').textContent = t.projectsText;
+      $$('#stack .tab-btn').forEach((button, i) => button.textContent = t.tabs[i]);
+      $('#contact .badge').textContent = t.contactBadge;
+      $('#contact h2').textContent = t.contactTitle;
+      $('#contact p').textContent = t.contactText;
+      $('#contact .btn').textContent = t.contactButton;
+      $('.cmdk-head').textContent = t.cmdTitle;
+      $$('.cmdk-actions button span').forEach((span, i) => span.textContent = t.cmd[i]);
+    }
+
+    // Tabs
+    const buttons = $$('.tab-btn');
+    const panels = $$('.tab-panel');
+    buttons.forEach((button) => {
+      button.addEventListener('click', () => {
+        buttons.forEach((b) => b.classList.remove('active'));
+        panels.forEach((panel) => panel.classList.remove('active'));
+        button.classList.add('active');
+        document.getElementById(button.dataset.tab).classList.add('active');
+      });
+    });
+
+    // Language switch
+    $$('.lang-btn').forEach((button) => button.addEventListener('click', () => setLanguage(button.dataset.lang)));
+    setLanguage(localStorage.getItem('portfolio-language') || 'en');
+
+    // Matrix rain background
+    const canvas = $('#matrix');
+    const ctx = canvas.getContext('2d');
+    const glyphs = '01{}[]<>/\\r4k5O_DEV_AI_MC'.split('');
+    let columns = [];
+
+    function resizeMatrix() {
+      canvas.width = window.innerWidth * devicePixelRatio;
+      canvas.height = window.innerHeight * devicePixelRatio;
+      ctx.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0);
+      const count = Math.ceil(window.innerWidth / 18);
+      columns = Array.from({ length: count }, () => Math.random() * window.innerHeight);
+    }
+
+    function drawMatrix() {
+      ctx.fillStyle = 'rgba(5, 8, 6, 0.16)';
+      ctx.fillRect(0, 0, window.innerWidth, window.innerHeight);
+      ctx.fillStyle = 'rgba(97, 255, 143, 0.82)';
+      ctx.font = '14px monospace';
+      columns.forEach((y, i) => {
+        const char = glyphs[Math.floor(Math.random() * glyphs.length)];
+        const x = i * 18;
+        ctx.fillText(char, x, y);
+        columns[i] = y > window.innerHeight + Math.random() * 900 ? 0 : y + 18;
+      });
+      requestAnimationFrame(drawMatrix);
+    }
+
+    resizeMatrix();
+    drawMatrix();
+    window.addEventListener('resize', resizeMatrix);
+
+    // Mouse glow + tiny sparks
+    const glow = $('.cursor-glow');
+    let lastSpark = 0;
+    window.addEventListener('pointermove', (event) => {
+      glow.style.left = `${event.clientX}px`;
+      glow.style.top = `${event.clientY}px`;
+      const now = performance.now();
+      if (now - lastSpark > 75 && Math.random() > 0.72) {
+        lastSpark = now;
+        const spark = document.createElement('span');
+        spark.className = 'spark';
+        spark.style.left = `${event.clientX}px`;
+        spark.style.top = `${event.clientY}px`;
+        spark.style.setProperty('--sx', `${(Math.random() - 0.5) * 90}px`);
+        spark.style.setProperty('--sy', `${(Math.random() - 0.5) * 90}px`);
+        document.body.appendChild(spark);
+        spark.addEventListener('animationend', () => spark.remove());
+      }
+    });
+
+    // Reveal-on-scroll
+    $$('.card, .terminal-card, .small-card, .mini, .contact').forEach((el) => el.classList.add('reveal'));
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.16 });
+    $$('.reveal').forEach((el) => observer.observe(el));
+
+    // 3D card tilt
+    $$('.card, .terminal-card').forEach((card) => {
+      card.addEventListener('pointermove', (event) => {
+        const rect = card.getBoundingClientRect();
+        const x = (event.clientX - rect.left) / rect.width - 0.5;
+        const y = (event.clientY - rect.top) / rect.height - 0.5;
+        card.style.transform = `perspective(900px) rotateX(${-y * 5}deg) rotateY(${x * 7}deg) translateY(-4px)`;
+      });
+      card.addEventListener('pointerleave', () => {
+        card.style.transform = '';
+      });
+    });
+
+    // Command palette: click button or press Ctrl/⌘ + K
+    const cmdk = $('#cmdk');
+    const openCmd = () => { cmdk.classList.add('open'); cmdk.setAttribute('aria-hidden', 'false'); };
+    const closeCmd = () => { cmdk.classList.remove('open'); cmdk.setAttribute('aria-hidden', 'true'); };
+    $('#openCmd').addEventListener('click', openCmd);
+    cmdk.addEventListener('click', (event) => { if (event.target === cmdk) closeCmd(); });
+    $$('.cmdk-actions button').forEach((button) => {
+      button.addEventListener('click', () => {
+        if (button.dataset.openGithub !== undefined) window.open(githubUrl, '_blank', 'noopener,noreferrer');
+        if (button.dataset.jump) document.querySelector(button.dataset.jump).scrollIntoView({ behavior: 'smooth' });
+        closeCmd();
+      });
+    });
+
+    window.addEventListener('keydown', (event) => {
+      if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'k') {
+        event.preventDefault();
+        cmdk.classList.contains('open') ? closeCmd() : openCmd();
+      }
+      if (event.key === 'Escape') closeCmd();
+      if (cmdk.classList.contains('open')) {
+        if (event.key === '1') $('[data-jump="#projects"]').click();
+        if (event.key === '2') $('[data-jump="#stack"]').click();
+        if (event.key === '3') $('[data-jump="#contact"]').click();
+        if (event.key.toLowerCase() === 'g') $('[data-open-github]').click();
+      }
+    });
+  </script>
+</body>
+</html>
